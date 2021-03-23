@@ -41,7 +41,7 @@ tim = Time indicator
 art = Artifact
 eve = Event
 nat = Natural Phenomenon
-       
+
 The second part partitions the dataset to the typical train/test subsets with an 80:20 ratio using the random holdout method (no bootstapping). No stratification sampling has been applied. 
 
 **Part 4**
@@ -54,12 +54,16 @@ The normalised confusion matrix portrays low True Positive (TP) rates as well as
 By way of example, only 28% and 38% the GPE and NAT classes respectively were properly classified.
 The EVE Named Entity achieved the highest misclassification score, most of which (32%) where incorrectly classified as a ORG Named Entity class.
 
+![confusion matrix](https://github.com/P15241328/univ_msc_gotenborg/blob/main/images/confusion%20matrix.png)
+
 Given that the data modelling phases is typically carried out iteratively, the following actions were taken in attempt to improve the accuracy of the linear SVM model.
 1. Increase the number of boundary words with n=10, but resulted in a sparser dataset. Part 2.
 2. Inclusion of other NE in boundary words during the building of class instances. Part 2.
 3. The removal of padding using surrogate words such as S1,S2,S3,S4,S5. Part 2.
 4. The inclusion of TFIDF instead of BOW vectorisation method. Part 3.
 5. Evaluating the performance of other ML algorithms through the use of LazyClassifer library.
+
+![comparision of different ML classification algorithms](https://github.com/P15241328/univ_msc_gotenborg/blob/main/images/model_comparison_accuracy.jpg)
 
 **Bonus Part A**
 Through basic exploratory data analysis it is clear that the Named Entity dataset is highly imbalanced.
@@ -75,3 +79,5 @@ gpe      13.32%
 eve      0.87%
 art      0.86%
 nat      0.31%
+
+![class disribution](https://github.com/P15241328/univ_msc_gotenborg/blob/main/images/class%20distribution.png)
