@@ -278,8 +278,8 @@ def ttsplit(bigdf,test_size=0.2):
 
 
 # Code for part 5
-def confusion_matrix(truth, predictions):
-    skplt.metrics.plot_confusion_matrix(test_y, test_predictions, normalize=True)
+def confusion_matrix(truth, predictions,normalize=True):
+    skplt.metrics.plot_confusion_matrix(truth, predictions, normalize=normalize)
 
 # Code for bonus part B
 def bonusb(filename):
