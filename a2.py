@@ -38,7 +38,7 @@ class LemmaTokenizer(object):
             return self.lemmatizer.lemmatize(text)
 
 
-def preprocess(inputfile):
+def preprocess(inputfile,remove_stop=False):
     def parse_line(line):
         file_line = (line.split('\t'))
         file_line[len(file_line) - 1] = file_line[len(file_line) - 1].split('\n')[0]
@@ -62,7 +62,7 @@ def preprocess(inputfile):
 
     # Lemmatise and remove stop
     lt = LemmaTokenizer()
-    df['Word'] = df['Word'].apply(lambda x: lt.lemmatize(x, True))
+    df['Word'] = df['Word'].apply(lambda x: lt.lemmatize(x, remove_stop))
 
     #split tag column into prefix and entities
     df_tags = df['Tag'].str.split('-', expand=True)
@@ -70,7 +70,7 @@ def preprocess(inputfile):
     df.insert(len(df.columns), 'Tag_entity', df_tags.iloc[:, 1])
 
     # Drop rows that have been tagged as stop/NAN
-    #df.dropna(inplace=True, subset=["Word"])
+    df.dropna(inplace=True, subset=["Word"])
 
     df['Word_seq'] = df.groupby('Sentence #').cumcount()+1
 
